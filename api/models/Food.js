@@ -29,7 +29,12 @@ module.exports = {
   		collection: 'bill',
   		via: 'items',
   		dominant: true
-  	}
+  	},
+    deals: {
+      collection: 'deal',
+      via: 'itemsAffected',
+      dominant: true
+    }
   }
 };
 

@@ -8,7 +8,15 @@
 module.exports = {
 
   attributes: {
-
+  	name: {
+  		type: 'string',  		
+  	},
+  	billId: {
+  		model: 'bill'
+  	},
+  	description: {
+  		type: 'text'
+  	}
   }
 };
 

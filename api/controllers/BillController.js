@@ -6,8 +6,15 @@
  */
 
 module.exports = {
+	// data.billDetail: detail about bill
+	// data.items: list of food in this bill
 	create: function(req, res) {
-		res.send('hello, world');
+		var data = JSON.parse(JSON.Stringify(req.body));
+		Food.create(data.billDetail).exec(function(err, newBill) {
+			data.items.forEach(function(item) {
+				newBill.items.add(item);
+			});			
+		});
 	}
 };
 

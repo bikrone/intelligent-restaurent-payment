@@ -8,7 +8,28 @@
 module.exports = {
 
   attributes: {
-
+  	startDate: {
+  		type: 'datetime',
+  		require: true
+  	},
+  	endDate: {
+  		type: 'datetime'
+  	},
+  	discount: {
+  		type: 'float'
+  	},
+  	price: {
+  		type: 'integer',
+  		require: true
+  	},
+  	description: {
+  		type: 'text'
+  	},
+  	itemsAffected: {
+  		collection: 'food',
+  		via: 'items',
+  		dominant: true
+  	}
   }
 };
 
