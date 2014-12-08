@@ -1,0 +1,38 @@
+#intro-section {
+	height: 600px;
+	background-image: url('/images/home/header2.jpg');
+	background-position: center;
+	background-size: cover;
+}
+
+#intro-section .background-img {
+	background-color: #f15a29;
+	height: 600px;
+	top: 0;
+	left: 0;
+	width: 100%;
+	position: absolute;
+	opacity: 0.65;
+	z-index: 1;
+}
+
+#intro-section .row {
+	z-index: 2;
+	position: relative;
+}
+
+#intro-section .logo {
+	height: 200px;
+}
+
+/*---------------------------------*/
+
+#navbar-section .row {
+	max-width: 100%;
+}
+#navbar-section .row .columns {
+	padding: 0;
+}
+#navbar-section .grid img {
+	height: 200px !important;
+}

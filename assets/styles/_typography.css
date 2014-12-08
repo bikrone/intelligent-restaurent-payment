@@ -1,0 +1,55 @@
+@font-face {
+	font-family: "Aleo-Bold";
+	src: url('/fonts/Aleo-Bold.otf') format('opentype');
+}
+@font-face {
+	font-family: "Aleo-Light";
+	src: url('/fonts/Aleo-Light.otf') format('opentype');
+}
+@font-face {
+	font-family: "Aleo-Regular";
+	src: url('/fonts/Aleo-Regular.otf') format('opentype');
+}
+
+
+.font-medium {
+ 	font-family: "Aleo-Regular";
+}
+.font-light {
+	font-family: "Aleo-Light";
+}
+.font-bold {
+	font-family: "Aleo-Bold";
+}
+
+.fs18 {
+	font-size: 18px;
+}
+.fs24 {
+	font-size: 24px;
+}
+.fs36 {
+	font-size: 36px;
+}
+.fs40 {
+	font-size: 40px;
+}
+.fs44 {
+	font-size: 44px;
+}
+.fs54 {
+	font-size: 54px;
+}
+.fs60 {
+	font-size: 60px;
+}
+.fs72 {
+	font-size: 72px;
+}
+
+.lh120 {
+	line-height: 120%;
+}
+.lh130 {
+	line-height: 130%;
+}
