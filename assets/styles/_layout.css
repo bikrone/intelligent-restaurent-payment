@@ -1,6 +1,12 @@
 .text-center {
 	text-align: center;
 }
+.text-left {
+	text-align: left;
+}
+.text-right {
+	text-align: right;
+}
 
 .absolute {
 	position: absolute;
@@ -8,4 +14,8 @@
 
 .relative {
 	position: relative;
+}
+
+.no-mgbot {
+	margin-bottom: 0px;
 }

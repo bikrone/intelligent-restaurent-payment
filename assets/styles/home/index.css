@@ -4,7 +4,6 @@
 	background-position: center;
 	background-size: cover;
 }
-
 #intro-section .background-img {
 	background-color: #f15a29;
 	height: 600px;
@@ -15,12 +14,10 @@
 	opacity: 0.65;
 	z-index: 1;
 }
-
 #intro-section .row {
 	z-index: 2;
 	position: relative;
 }
-
 #intro-section .logo {
 	height: 200px;
 }
@@ -45,6 +42,13 @@
 .food-section img {
 	height: 400px;
 }
+.food-section .left-description {
+	padding-left: 20px;
+}
+.food-section .right-description {
+	padding-right: 20px;
+	text-align: right;
+}
 .food-section .view-button {
 	border: 2px solid #f15a29;
 	display: inline-block;
@@ -62,5 +66,28 @@
 }
 .food-section .view-button:hover {
 	color: white !important;
+	background-color: #f15a29;
+}
+
+/*---------------------------------*/
+
+#review-section {
+	height: 500px;
+}
+#review-section .row {
+	border: 1px solid rgb(200, 200, 200);
+	padding: 32px;
+	box-shadow: 2px 2px 12px 2px #CCCCCC;
+}
+#review-section .row .columns:nth-child(1) {
+	border-width: 0px 1px 0px 0px;
+	border-color: #CCCCCC;
+	border-style: solid;
+}
+
+/*---------------------------------*/
+
+#footer-section {
+	height: 320px;
 	background-color: #f15a29;
 }
