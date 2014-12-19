@@ -12,8 +12,8 @@ module.exports = {
   		type: 'string',  		
   	},
   	billId: {
-  		model: 'bill'
-  	},
+      type: 'int'
+    },
   	description: {
   		type: 'text'
   	}

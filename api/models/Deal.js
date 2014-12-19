@@ -24,7 +24,7 @@ module.exports = {
   	itemsAffected: {
   		collection: 'food',
   		via: 'deals'  		
-  	}
+  	}    
   }
 };
 

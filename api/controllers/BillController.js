@@ -8,13 +8,51 @@
 module.exports = {
 	// data.billDetail: detail about bill
 	// data.items: list of food in this bill
-	create: function(req, res) {
-		var data = JSON.parse(JSON.Stringify(req.body));
-		Food.create(data.billDetail).exec(function(err, newBill) {
-			data.items.forEach(function(item) {
+	generateBill: function(req, res) {
+		var data = JSON.parse(JSON.stringify(req.body));
+		console.log(data);
+		Bill.create(data.billDetail).exec(function(err, newBill) {
+			if (err) {
+				console.log(err);
+				res.json({
+					success: false				
+				});					
+				return;
+			}
+			console.log(JSON.stringify(newBill));
+			var i;
+			for (i in data.items) {
+				var item = data.items[i];
 				newBill.items.add(item);
-			});			
+				console.log(item);
+			}
+			res.json({
+				success: true,
+				newBill: newBill
+			});					
 		});
+		
+	},
+
+	// data.billId 
+	// data.foodId
+	addFood: function(req, res) {
+		var data = JSON.parse(JSON.stringify(req.body));
+		console.log(data);
+		Bill.findOne(data.billId).exec(function(err, theBill) {
+			if (err) {
+				console.log(err);
+				res.json({
+					success: false
+				});
+				return;
+			}
+			theBill.items.add(data.foodId);
+			res.json({
+				success: true,
+				billUpdated: theBill
+			});
+		})
 	}
 };
 

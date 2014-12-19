@@ -10,14 +10,17 @@ module.exports = {
   attributes: {
 		orderDate: {
   		type: 'datetime',
-  		require: true
+  		required: true,
+      defaultsTo: function() {
+        return new Date();
+      }
   	},
   	paymentDate: {
   		type: 'datetime'
   	},
   	paymentPrice: {
   		type: 'float',
-  		require: true
+  		required: true
   	},
   	customerAddress: {
   		type: 'string',  	
@@ -30,7 +33,7 @@ module.exports = {
   	},
   	isOnline: {
   		type: 'boolean',
-  		defaultsTo: true
+  		defaultsTo: false
   	},
   	items: {
   		collection: 'food',
