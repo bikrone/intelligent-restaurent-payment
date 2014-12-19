@@ -10,7 +10,7 @@ module.exports = {
   attributes: {
   	startDate: {
   		type: 'datetime',
-  		require: true
+  		required: true
   	},
   	endDate: {
   		type: 'datetime'

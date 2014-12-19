@@ -10,7 +10,7 @@ module.exports = {
   attributes: {
   	name: {
   		type: 'string',
-  		require: true
+  		required: true
   	},
   	imageSmall: {
   		type: 'string'
@@ -20,7 +20,7 @@ module.exports = {
   	},
   	price: {
   		type: 'integer',
-  		require: true
+  		required: true
   	},
   	description: {
   		type: 'text'

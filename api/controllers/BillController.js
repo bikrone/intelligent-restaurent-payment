@@ -26,10 +26,13 @@ module.exports = {
 				newBill.items.add(item);
 				console.log(item);
 			}
-			res.json({
-				success: true,
-				newBill: newBill
-			});					
+			newBill.save(function(err, theBill) {
+				res.json({
+					success: true,
+					newBill: theBill
+				});						
+			});
+			
 		});
 		
 	},
@@ -48,10 +51,13 @@ module.exports = {
 				return;
 			}
 			theBill.items.add(data.foodId);
-			res.json({
-				success: true,
-				billUpdated: theBill
+			theBill.save(function(err, newBill) {
+				res.json({
+					success: true,
+					billUpdated: newBill
+				});
 			});
+			
 		})
 	}
 };
