@@ -33,7 +33,8 @@ module.exports.routes = {
   ***************************************************************************/
 
   '/': 'HomeController.index',
-  'POST /bill': 'BillController.create'
+  'POST /bill': 'BillController.create',
+  'GET /bill/getFood/:billId': 'BillController.getFood'
 
   /***************************************************************************
   *                                                                          *

@@ -128,6 +128,28 @@ module.exports = {
 			});
 			return;
 		});
+	},
+
+	// GET /bill/getFood/:billId
+	getFood: function(req, res) {		
+		if (req.param("billId") === undefined) {
+			res.json({
+				success: false,
+				reason: 'Wrong parameter'
+			});			
+		} else {
+			var result = [];
+			Order.find({billId: req.param("billId")}).exec(function(err, found) {
+				while (found.length) {
+					var tmp = found.pop();
+					result.push({foodId: tmp.foodId, number: tmp.number});
+				}
+				res.json({
+					success: true,
+					listOfFood: result
+				});			
+			});
+		}
 	}
 };
 
