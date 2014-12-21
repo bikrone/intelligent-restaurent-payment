@@ -42,23 +42,88 @@ module.exports = {
 	addFood: function(req, res) {
 		var data = JSON.parse(JSON.stringify(req.body));
 		console.log(data);
-		Bill.findOne(data.billId).exec(function(err, theBill) {
-			if (err) {
-				console.log(err);
+		Order.findOne({billId: data.billId, foodId: data.foodId}).exec(function(err, theOrder) {			
+			console.log(JSON.stringify(theOrder));
+			if (err || theOrder === undefined) {
+				Order.create({billId: data.billId, foodId: data.foodId}).exec(function(err, newOrder) {
+					if (err) {
+						console.log(err);
+						res.json({
+							success: false
+						});
+						return;
+					}
+					res.json({
+						success: true,
+						data: newOrder
+					});
+				});							
+			} else {
+				Order.update({id: theOrder.id}, {number: theOrder.number+1}).exec(function(err, newOrder) {
+					if (err) {
+						console.log(err);
+						res.json({
+							success: false
+						});
+						return;
+					}
+					res.json({
+						success: true,
+						data: newOrder
+					});
+				});
+			}
+		});		
+	},
+
+	// delete food from bill
+	removeFood: function(req, res) {
+		var data = JSON.parse(JSON.stringify(req.body));
+		console.log(data);
+		Order.findOne({billId: data.billId, foodId: data.foodId}).exec(function(err, theOrder) {					
+			if (err || theOrder === undefined) {
 				res.json({
-					success: false
+					success: false,
+					reason: 'No data found'
 				});
 				return;
+			} else {
+				if (theOrder.number == 1) {
+					Order.destroy({id: theOrder.id}).exec(function(err) {
+						res.json({
+							success: true
+						});
+						return;
+					});
+				} else {
+					Order.update({id: theOrder.id}, {number: theOrder.number-1}).exec(function(err, newOrder) {
+						if (err) {
+							console.log(err);
+							res.json({
+								success: false
+							});
+							return;
+						}
+						res.json({
+							success: true,
+							data: newOrder
+						});
+					});
+				}				
 			}
-			theBill.items.add(data.foodId);
-			theBill.save(function(err, newBill) {
-				res.json({
-					success: true,
-					billUpdated: newBill
-				});
+		});		
+	},
+
+	// delete the whole food
+	// delete food from bill
+	destroyFood: function(req, res) {
+		var data = JSON.parse(JSON.stringify(req.body));		
+		Order.destroy({billId: data.billId, foodId: data.foodId}).exec(function(err) {
+			res.json({
+				success: true
 			});
-			
-		})
+			return;
+		});
 	}
 };
 

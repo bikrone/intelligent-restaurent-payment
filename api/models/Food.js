@@ -24,12 +24,7 @@ module.exports = {
   	},
   	description: {
   		type: 'text'
-  	},
-  	bills: {
-  		collection: 'bill',
-  		via: 'items',
-  		dominant: true
-  	},
+  	},  
     deals: {
       collection: 'deal',
       via: 'itemsAffected',

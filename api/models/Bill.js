@@ -34,10 +34,6 @@ module.exports = {
   	isOnline: {
   		type: 'boolean',
   		defaultsTo: false
-  	},
-  	items: {
-  		collection: 'food',
-  		via: 'bills'  		
   	}
   }
 };
