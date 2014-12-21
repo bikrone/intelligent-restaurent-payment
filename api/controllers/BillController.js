@@ -39,13 +39,15 @@ module.exports = {
 
 	// data.billId 
 	// data.foodId
+	// data.number
 	addFood: function(req, res) {
 		var data = JSON.parse(JSON.stringify(req.body));
+		if (data.number === undefined || data.number<0) data.number = 1;
 		console.log(data);
 		Order.findOne({billId: data.billId, foodId: data.foodId}).exec(function(err, theOrder) {			
 			console.log(JSON.stringify(theOrder));
 			if (err || theOrder === undefined) {
-				Order.create({billId: data.billId, foodId: data.foodId}).exec(function(err, newOrder) {
+				Order.create({billId: data.billId, foodId: data.foodId, number: data.number}).exec(function(err, newOrder) {
 					if (err) {
 						console.log(err);
 						res.json({
@@ -59,7 +61,7 @@ module.exports = {
 					});
 				});							
 			} else {
-				Order.update({id: theOrder.id}, {number: theOrder.number+1}).exec(function(err, newOrder) {
+				Order.update({id: theOrder.id}, {number: theOrder.number+data.number}).exec(function(err, newOrder) {
 					if (err) {
 						console.log(err);
 						res.json({
@@ -79,6 +81,7 @@ module.exports = {
 	// delete food from bill
 	removeFood: function(req, res) {
 		var data = JSON.parse(JSON.stringify(req.body));
+		if (data.number === undefined || data.number<0) data.number = 1;
 		console.log(data);
 		Order.findOne({billId: data.billId, foodId: data.foodId}).exec(function(err, theOrder) {					
 			if (err || theOrder === undefined) {
@@ -88,7 +91,7 @@ module.exports = {
 				});
 				return;
 			} else {
-				if (theOrder.number == 1) {
+				if (theOrder.number <= data.number) {
 					Order.destroy({id: theOrder.id}).exec(function(err) {
 						res.json({
 							success: true
@@ -96,7 +99,7 @@ module.exports = {
 						return;
 					});
 				} else {
-					Order.update({id: theOrder.id}, {number: theOrder.number-1}).exec(function(err, newOrder) {
+					Order.update({id: theOrder.id}, {number: theOrder.number-data.number}).exec(function(err, newOrder) {
 						if (err) {
 							console.log(err);
 							res.json({
@@ -118,7 +121,8 @@ module.exports = {
 	// delete food from bill
 	destroyFood: function(req, res) {
 		var data = JSON.parse(JSON.stringify(req.body));		
-		Order.destroy({billId: data.billId, foodId: data.foodId}).exec(function(err) {
+		console.log(data);
+		Order.destroy({billId: data.billId}).exec(function(err) {
 			res.json({
 				success: true
 			});
