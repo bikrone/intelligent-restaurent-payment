@@ -40,8 +40,10 @@ module.exports = {
       var obj = this.toObject();     
       obj.updatedAt = (new Date(obj.updatedAt)).format('mm-dd-yyyy HH:MM:ss');
       obj.createdAt = (new Date(obj.createdAt)).format('mm-dd-yyyy HH:MM:ss');
-      obj.orderDate = (new Date(obj.orderDate)).format('mm-dd-yyyy HH:MM:ss');
-      obj.paymentDate = (new Date(obj.paymentDate)).format('mm-dd-yyyy HH:MM:ss');
+      if (obj.orderDate)
+        obj.orderDate = (new Date(obj.orderDate)).format('mm-dd-yyyy HH:MM:ss');
+      if (obj.paymentDate)
+        obj.paymentDate = (new Date(obj.paymentDate)).format('mm-dd-yyyy HH:MM:ss');
       return obj;
     }
   },

@@ -30,8 +30,10 @@ module.exports = {
       var obj = this.toObject();     
       obj.updatedAt = (new Date(obj.updatedAt)).format('mm-dd-yyyy HH:MM:ss');
       obj.createdAt = (new Date(obj.createdAt)).format('mm-dd-yyyy HH:MM:ss');
-      obj.startDate = (new Date(obj.startDate)).format('mm-dd-yyyy HH:MM:ss');
-      obj.endDate = (new Date(obj.endDate)).format('mm-dd-yyyy HH:MM:ss');
+      if (obj.startDate)
+        obj.startDate = (new Date(obj.startDate)).format('mm-dd-yyyy HH:MM:ss');
+      if (obj.endDate)
+        obj.endDate = (new Date(obj.endDate)).format('mm-dd-yyyy HH:MM:ss');
       return obj;
     }
   }
