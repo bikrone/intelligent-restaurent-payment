@@ -83,7 +83,6 @@ module.exports = {
 			console.log(tables.length);
 			for (var i=0; i<tables.length; i++) {
 				if (lastUpdated < tables[i].updatedAt) {
-					console.log(tables[i].updatedAt);
 					lastUpdated = tables[i].updatedAt;
 				}
 			} 
