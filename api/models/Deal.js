@@ -9,11 +9,11 @@ module.exports = {
 
   attributes: {
   	startDate: {
-  		type: 'datetime',
+  		type: 'date',
   		required: true
   	},
   	endDate: {
-  		type: 'datetime'
+  		type: 'date'
   	},
   	discount: {
   		type: 'float'
@@ -24,7 +24,16 @@ module.exports = {
   	itemsAffected: {
   		collection: 'food',
   		via: 'deals'  		
-  	}    
+  	},
+    toJSON: function() {
+      require('../Lib/datetime.js');
+      var obj = this.toObject();     
+      obj.updatedAt = (new Date(obj.updatedAt)).format('mm-dd-yyyy HH:MM:ss');
+      obj.createdAt = (new Date(obj.createdAt)).format('mm-dd-yyyy HH:MM:ss');
+      obj.startDate = (new Date(obj.startDate)).format('mm-dd-yyyy HH:MM:ss');
+      obj.endDate = (new Date(obj.endDate)).format('mm-dd-yyyy HH:MM:ss');
+      return obj;
+    }
   }
 };
 

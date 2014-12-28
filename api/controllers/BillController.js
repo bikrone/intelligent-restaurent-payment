@@ -15,7 +15,7 @@ module.exports = {
 			if (err) {
 				console.log(err);
 				res.json({
-					success: false				
+					status: 400				
 				});					
 				return;
 			}
@@ -51,7 +51,7 @@ module.exports = {
 					if (err) {
 						console.log(err);
 						res.json({
-							success: false
+							status: 400
 						});
 						return;
 					}
@@ -65,7 +65,7 @@ module.exports = {
 					if (err) {
 						console.log(err);
 						res.json({
-							success: false
+							status: 400
 						});
 						return;
 					}
@@ -86,7 +86,7 @@ module.exports = {
 		Order.findOne({billId: data.billId, foodId: data.foodId}).exec(function(err, theOrder) {					
 			if (err || theOrder === undefined) {
 				res.json({
-					success: false,
+					status: 400,
 					reason: 'No data found'
 				});
 				return;
@@ -103,7 +103,7 @@ module.exports = {
 						if (err) {
 							console.log(err);
 							res.json({
-								success: false
+								status: 400
 							});
 							return;
 						}
@@ -134,7 +134,7 @@ module.exports = {
 	getFood: function(req, res) {		
 		if (req.param("billId") === undefined) {
 			res.json({
-				success: false,
+				status: 400,
 				reason: 'Wrong parameter'
 			});			
 		} else {

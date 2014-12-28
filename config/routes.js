@@ -34,8 +34,13 @@ module.exports.routes = {
 
   '/': 'HomeController.index',
   'POST /bill': 'BillController.create',
-  'GET /bill/getFood/:billId': 'BillController.getFood'
-
+  'GET /bill/getFood/:billId': 'BillController.getFood',
+  'GET /food/getFoodFromCategory/:category': 'FoodController.getFoodFromCategory',
+  'POST /table/:id/completePayment': 'TableController.completePayment',
+  'POST /table/:id/assignWithBill/:billId': 'TableController.assignWithBill',
+  'POST /food/:id/setCategory/:category': 'FoodController.setCategory',
+  'POST /deal/:id/addFood/:foodId': 'DealController.addFood',
+  'POST /table/getUpdateSinceTime': 'TableController.getUpdateSinceTime'
   /***************************************************************************
   *                                                                          *
   * Custom routes here...                                                    *

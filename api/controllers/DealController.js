@@ -6,10 +6,16 @@
  */
 
 module.exports = {
-	// data.dealId 
-	// data.foodId
+	// POST: /deal/:id/addFood/:foodId
 	addFood: function(req, res) {
-		var data = JSON.parse(JSON.stringify(req.body));
+		if (req.param("id") === undefined || req.param("foodId") === undefined) {
+			res.json({
+				status: 400,
+				reason: 'Wrong parameter in DealController.addFood function'
+			});
+			return;		
+		}
+		var data = {dealId: req.param("id"), foodId: req.param("foodId")};		
 		console.log(data);
 		Deal.findOne(data.dealId).exec(function(err, theDeal) {
 			if (err) {
@@ -19,14 +25,13 @@ module.exports = {
 				});
 				return;
 			}
-			theDeal.items.add(data.foodId);
+			theDeal.itemsAffected.add(data.foodId);
 			theDeal.save(function(err, newDeal) {
 				res.json({
 					success: true,
 					dealUpdated: newDeal
 				});
-			});
-			
+			});			
 		})
 	}
 };
