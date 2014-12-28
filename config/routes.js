@@ -40,7 +40,10 @@ module.exports.routes = {
   'POST /table/:id/assignWithBill/:billId': 'TableController.assignWithBill',
   'POST /food/:id/setCategory/:category': 'FoodController.setCategory',
   'POST /deal/:id/addFood/:foodId': 'DealController.addFood',
-  'POST /table/getUpdateSinceTime': 'TableController.getUpdateSinceTime'
+  'POST /table/getUpdateSinceTime': 'TableController.getUpdateSinceTime',
+  'GET /user/checkIfLogined': 'UserController.checkIfLogined',
+  'POST /user/login': 'UserController.login',
+  'POST /user/logout': 'UserController.logout'
   /***************************************************************************
   *                                                                          *
   * Custom routes here...                                                    *

@@ -7,7 +7,7 @@
 
 module.exports = {
 	// food/getFoodFromCategory/:category
-	getFoodFromCategory: function(req, res) {
+	getFoodFromCategory: function(req, res) {		
 		if (req.param("category") === undefined) {
 			res.json({
 				status: 400,
