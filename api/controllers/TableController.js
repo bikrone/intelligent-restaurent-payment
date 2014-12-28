@@ -63,7 +63,7 @@ module.exports = {
 			data.datetime = new Date('1/1/1970');
 		}
 		else data.datetime = new Date(data.datetime);
-		Table.find().where({ updatedAt: {'>=': data.datetime} }).exec(function(err, tables) {
+		Table.find().where({ updatedAt: {'>': data.datetime} }).exec(function(err, tables) {
 			if (err) {
 				res.json({
 					status: 400,
