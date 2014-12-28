@@ -107,3 +107,11 @@ POST /deal/:id/addFood/:foodId
 example: POST /deal/1/addFood/2 // now food 2 is affected by deal 1
 
 ```
+
+- User controller
+```javascript
+// Assign a specific food affected by a specific deal
+POST /deal/:id/addFood/:foodId
+example: POST /deal/1/addFood/2 // now food 2 is affected by deal 1
+
+```

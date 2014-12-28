@@ -28,19 +28,18 @@ module.exports = {
       var obj = this.toObject();     
       obj.updatedAt = (new Date(obj.updatedAt)).format('mm-dd-yyyy HH:MM:ss');
       obj.createdAt = (new Date(obj.createdAt)).format('mm-dd-yyyy HH:MM:ss');    
-      delete obj.password;
+      // delete obj.password;
       return obj;
     }
   },
-  beforeCreate: function(obj, next) {
-  	console.log("I was here");
-  	obj.password = sha1(obj.password);
-  	console.log(obj.password);
+  beforeCreate: function(obj, next) {  	
+  	// obj.password = sha1(obj.password);  	
   	next();
   },
   loginWithPassword: function(opts, cb) {
   	var username = opts.username;
-  	var password = sha1(opts.password);
+  	// var password = sha1(opts.password);
+  	var password = opts.password;
   	User.findOne({username: username, password: password}).exec(function(err, user){
   		if (err) return cb(err);
   		if (!user) {
