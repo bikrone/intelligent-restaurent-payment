@@ -87,7 +87,7 @@ module.exports = {
           sumPayment += price;
           billResult += '\\n';
         }
-        billResult += 'Tong cong: ' + price + 'VND\\n';
+        billResult += 'Tong cong: ' + sumPayment + 'VND\\n';
         cb(null, billResult);
       });
       
