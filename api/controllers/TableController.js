@@ -15,7 +15,7 @@ module.exports = {
 				reason: 'Wrong parameter in TableController.completePayment'
 			});			
 		} else {			
-			Table.checkout({id: req.param("id")}, function(err, billResult) {		
+			setTimeout(Table.checkout({id: req.param("id")}, function(err, billResult) {		
 				if (err) {
 					res.json({
 						status: 400,
@@ -27,7 +27,7 @@ module.exports = {
 					success: true,
 					billResult: billResult
 				});			
-			});
+			}), 0);
 		}
 	},
 	

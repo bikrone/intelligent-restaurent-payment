@@ -35,7 +35,7 @@ module.exports = {
       return;
     }
     if (typeof opts === 'object') {      
-      Table.findOne(opts).exec(function(err, table) {
+      setTimeout(Table.findOne(opts).exec(function(err, table) {
         if (err) return cb(err);
         if (!table) {
           err = new Error();
@@ -43,14 +43,14 @@ module.exports = {
           return cb(err);
         }
 
-        Bill.checkout(table.billId, function(err, billResult) {
+        setTimeout(Bill.checkout(table.billId, function(err, billResult) {
           if (err) return cb(err);
           Table.update(opts, { billId: null }).exec(function(err, updated) {
             if (err) return cb(err);
             cb(null, billResult.replace('#XXX#', table.id));
           });
-        });
-      });
+        }), 0);
+      }), 0);
     } else {
       var err = new Error();
       err.message = 'Wrong parameter in Table.checkout function';
