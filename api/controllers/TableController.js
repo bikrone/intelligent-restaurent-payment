@@ -38,7 +38,10 @@ module.exports = {
 				reason: 'Wrong parameter'
 			});			
 		} else {			
-			Table.update({id: req.param("id")}, {billId: req.param("billId")})
+			var toReplace = req.param("billId");
+			if (toReplace == 0) toReplace = null;
+
+			Table.update({id: req.param("id")}, {billId: toReplace})
 			.exec(function(err, updated) {		
 				if (err) {
 					res.json({
