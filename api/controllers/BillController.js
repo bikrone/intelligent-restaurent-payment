@@ -6,6 +6,21 @@
  */
 
 module.exports = {
+	
+	// GET /bill	
+	getAllBill: function(req, res) {
+		console.log('Go in BillController.getAllBill');
+		Bill.find().sort('id DESC').limit(200).exec(function(err, listOfBills) {
+			if (err) {
+				res.json({
+					status: 400,
+					error: err
+				});
+				return;
+			}
+			res.json(listOfBills);
+		});
+	},
 	// data.billDetail: detail about bill
 	// data.items: list of food in this bill
 	generateBill: function(req, res) {

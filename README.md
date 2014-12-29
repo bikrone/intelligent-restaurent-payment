@@ -11,8 +11,13 @@ Clone this repo ```git clone git@github.com:bikrone/IntelResMent.git```. Run ```
 ```javascript
 // Get the whole list of a model like food, table, bill, etc.
 GET /food/
+
 // Get specific model with id
 GET /food/:id
+
+// Specifically, in getting bills
+GET /bill/
+will only get top 200 bills recently (because there may be a lot of bills)
 
 // Insert instances to database
 POST /food/
@@ -45,6 +50,7 @@ DELETE /food/:id
 // Get all the food from a specific category
 GET /food/getFoodFromCategory/:category
 example: GET /food/getFoodFromCategory/Main Dishes
+
 // Set category for food with specific id
 POST /food/:id/setCategory/:category
 example: POST /food/1/setCategory/Drinks // set food id 1 to category Drinks

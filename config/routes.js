@@ -43,7 +43,8 @@ module.exports.routes = {
   'POST /table/getUpdateSinceTime': 'TableController.getUpdateSinceTime',
   'GET /user/checkIfLogined': 'UserController.checkIfLogined',
   'POST /user/login': 'UserController.login',
-  'POST /user/logout': 'UserController.logout'
+  'POST /user/logout': 'UserController.logout',
+  'GET /bill': 'BillController.getAllBill'
   /***************************************************************************
   *                                                                          *
   * Custom routes here...                                                    *
