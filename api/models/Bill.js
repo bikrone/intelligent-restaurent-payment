@@ -74,9 +74,9 @@ module.exports = {
             price = price*(1-deal.discount);
         }
 
-        billResult += '--- ' + food.name + ': So luong: ' + orders[i].number + ' Gia: ' + food.price*orders[i].number + 'VND';
+        billResult += '--- ' + food.name + ': So luong: ' + orders[i].number + ' Gia: ' + food.price*orders[i].number + 'VND\\n';
         if (price<food.price) {
-           billResult += ' giam gia con ' + price + 'VND';
+           billResult += ' giam gia con ' + price + 'VND\\n';
         }
         sumPayment += price;
       }        
