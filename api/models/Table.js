@@ -27,6 +27,13 @@ module.exports = {
     }
   },
   checkout: function(opts, cb) {    
+    console.log('Go in Table.checkout');
+    if (opts === undefined) {
+      var err = new Error();
+      err.message = 'No argument in Table.Checkout function';
+      console.log(err);
+      return;
+    }
     if (typeof opts === 'object') {      
       Table.findOne(opts).exec(function(err, table) {
         if (err) return cb(err);

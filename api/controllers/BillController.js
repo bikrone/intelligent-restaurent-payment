@@ -9,8 +9,8 @@ module.exports = {
 	// data.billDetail: detail about bill
 	// data.items: list of food in this bill
 	generateBill: function(req, res) {
-		var data = JSON.parse(JSON.stringify(req.body));
-		console.log(data);
+		console.log('Go in BillController.generateBill');
+		var data = JSON.parse(JSON.stringify(req.body));		
 		Bill.create(data.billDetail).exec(function(err, newBill) {
 			if (err) {
 				console.log(err);
@@ -19,7 +19,6 @@ module.exports = {
 				});					
 				return;
 			}
-			console.log(JSON.stringify(newBill));
 			var i;
 			for (i in data.items) {
 				var item = data.items[i];
@@ -41,11 +40,10 @@ module.exports = {
 	// data.foodId
 	// data.number
 	addFood: function(req, res) {
+		console.log('Go in BillController.addFood');
 		var data = JSON.parse(JSON.stringify(req.body));
-		if (data.number === undefined || data.number<0) data.number = 1;
-		console.log(data);
-		Order.findOne({billId: data.billId, foodId: data.foodId}).exec(function(err, theOrder) {			
-			console.log(JSON.stringify(theOrder));
+		if (data.number === undefined || data.number<0) data.number = 1;		
+		Order.findOne({billId: data.billId, foodId: data.foodId}).exec(function(err, theOrder) {						
 			if (err || theOrder === undefined) {
 				Order.create({billId: data.billId, foodId: data.foodId, number: data.number}).exec(function(err, newOrder) {
 					if (err) {
@@ -80,9 +78,10 @@ module.exports = {
 
 	// delete food from bill
 	removeFood: function(req, res) {
+		console.log('Go in BillController.removeFood');
 		var data = JSON.parse(JSON.stringify(req.body));
 		if (data.number === undefined || data.number<0) data.number = 1;
-		console.log(data);
+
 		Order.findOne({billId: data.billId, foodId: data.foodId}).exec(function(err, theOrder) {					
 			if (err || theOrder === undefined) {
 				res.json({
@@ -119,9 +118,10 @@ module.exports = {
 
 	// delete the whole food
 	// delete food from bill
+
 	destroyFood: function(req, res) {
-		var data = JSON.parse(JSON.stringify(req.body));		
-		console.log(data);
+		console.log('Go in BillController.destroyFood');
+		var data = JSON.parse(JSON.stringify(req.body));				
 		Order.destroy({billId: data.billId}).exec(function(err) {
 			res.json({
 				success: true
@@ -139,10 +139,10 @@ module.exports = {
 			});			
 		} else {
 			var result = [];
-			Order.find({billId: req.param("billId")}).exec(function(err, found) {
+			Order.find({billId: req.param("billId")}).populate('foodId').exec(function(err, found) {
 				while (found.length) {
 					var tmp = found.pop();
-					result.push({foodId: tmp.foodId, number: tmp.number});
+					result.push({foodId: tmp.foodId.id, food: tmp.foodId, number: tmp.number});
 				}
 				res.json({
 					success: true,

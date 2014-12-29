@@ -8,6 +8,7 @@
 module.exports = {
 	// food/getFoodFromCategory/:category
 	getFoodFromCategory: function(req, res) {		
+		console.log('Go in FoodController.getFoodFromCategory');
 		if (req.param("category") === undefined) {
 			res.json({
 				status: 400,
@@ -25,6 +26,7 @@ module.exports = {
 
 	// POST /food/:id/setCategory/:category
 	setCategory: function(req, res) {
+		console.log('Go in FoodController.setCategory');
 		if (req.param("category") === undefined || req.param("id") === undefined) {
 			res.json({
 				status: 400,

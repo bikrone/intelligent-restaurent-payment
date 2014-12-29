@@ -1,8 +1,13 @@
 IntelResMent
 ============
-
-#### API Documentation
-##### Basic CRUD functions
+# Installation
+## Requirement
+For the database, we required MySql installed. Run ```create database respayment character set utf8 collate utf8_general_ci;``` to create the suitable database.
+You need sass installed in your computer. Run ```sass -v``` to check. If you don't have it, run ```sudo gem install sass``` (remove ```sudo``` if you run in Windows).
+## Setup
+Clone this repo ```git clone git@github.com:bikrone/IntelResMent.git```. Run ```npm install``` to install packages and ```sails lift``` to run the server.
+# API Documentation
+## Basic CRUD functions
 ```javascript
 // Get the whole list of a model like food, table, bill, etc.
 GET /food/
@@ -34,8 +39,8 @@ DELETE /food/:id
 
 ```
 
-##### Specific functions
-- Food controller
+## Specific functions
+#####Food controller
 ```javascript
 // Get all the food from a specific category
 GET /food/getFoodFromCategory/:category
@@ -45,7 +50,7 @@ POST /food/:id/setCategory/:category
 example: POST /food/1/setCategory/Drinks // set food id 1 to category Drinks
 ```
 
-- Bill controller
+##### Bill controller
 ```javascript
 // Add food to bill
 POST /bill/addFood
@@ -77,7 +82,7 @@ GET /bill/getFood/:billId
 example: GET /bill/getFood/1 //get all food from bill 1
 ```
 
-- Table controller
+##### Table controller
 ```javascript
 // Assign table with a bill
 POST /table/:id/assignWithBill/:billId (no data)
@@ -100,7 +105,7 @@ with data like
 }
 if no data is posted, it return status of all tables
 ```
-- Deal controller
+##### Deal controller
 ```javascript
 // Assign a specific food affected by a specific deal
 POST /deal/:id/addFood/:foodId
@@ -108,7 +113,7 @@ example: POST /deal/1/addFood/2 // now food 2 is affected by deal 1
 
 ```
 
-- User controller
+##### User controller
 ```javascript
 // Assign a specific food affected by a specific deal
 POST /deal/:id/addFood/:foodId

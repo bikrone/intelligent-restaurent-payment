@@ -8,6 +8,7 @@ require('../Lib/datetime.js');
 module.exports = {
 	// POST /table/:id/completePayment/
 	completePayment: function(req, res) {
+		console.log('Go in TableController.completePayment');
 		if (req.param("id") === undefined) {
 			res.json({
 				status: 400,
@@ -32,6 +33,7 @@ module.exports = {
 	
 	// POST /table/:id/assignWithBill/:billId
 	assignWithBill: function(req, res) {
+		console.log('Go in TableController.assignWithBill');
 		if (req.param("id") === undefined || req.param("billId") === undefined) {
 			res.json({
 				status: 400,
@@ -61,6 +63,7 @@ module.exports = {
 	// POST /table/getUpdateSinceTime
 	// data = { datetime: '12/11/2014 11:11:11'}
 	getUpdateSinceTime: function(req,res) {
+		console.log('Go in TableController.getUpdateSinceTime');
 		var data = JSON.parse(JSON.stringify(req.body));
 		if (data.datetime === undefined) {
 			data.datetime = new Date('1/1/1970');

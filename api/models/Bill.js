@@ -20,7 +20,8 @@ module.exports = {
   	},
   	paymentPrice: {
   		type: 'float',
-  		required: true
+  		required: true,
+      defaultsTo: 0
   	},
   	customerAddress: {
   		type: 'string',  	
@@ -48,11 +49,12 @@ module.exports = {
     }
   },
   checkout: function(billId, cb) {    
+    console.log('Go in Bill.checkout');
     Order.find({ billId: billId }).exec(function(err, orders) {
       if (err) return cb(err);
       if ((!orders) || (orders.length == 0)) {
         err = new Error();
-        err.message = 'Can\'t find bill with opts ' + JSON.stringify(opts) + ' in Bill.checkout function';
+        err.message = 'Can\'t find bill with billId ' + JSON.stringify(billId) + ' in Bill.checkout function';
         return cb(err);
       }
       var arr = [];
